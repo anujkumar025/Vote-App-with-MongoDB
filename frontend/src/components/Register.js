@@ -32,8 +32,13 @@ const Register = () => {
             const user = {fname, email, password};
             axios.post("http://localhost:5000/register", user)
             .then(res => {
-                alert(res.data.message);
-                navigate('/login');
+                if(res.data.message === "User registered successfully."){
+                    alert(res.data.message);
+                }
+                else{
+                    alert("Please LogIn");
+                    navigate('/login');
+                }
             }).catch(err => {
                 console.log(err);
             })
@@ -43,9 +48,13 @@ const Register = () => {
         }
     }
 
+    const handleLoginButton = () => {
+        navigate('/login');
+    }
+
     return(
-        <div className='box'>
-            <div className='container'>
+        <div className='Register-box'>
+            <div className='Register-container'>
                 <h2>Login</h2>
                 <div className='formGroup'>
                     <label>Name</label>
@@ -53,7 +62,7 @@ const Register = () => {
                         type="text"
                         value={fname}
                         onChange={handleNameChange}
-                        className='input'
+                        className='Register-input'
                     />
                 </div>
                 <div className='formGroup'>
@@ -62,7 +71,7 @@ const Register = () => {
                         type="email"
                         value={email}
                         onChange={handleEmailChange}
-                        className="input"
+                        className="Register-input"
                     />
                 </div>
                 <div className='formGroup'>
@@ -71,7 +80,7 @@ const Register = () => {
                         type="password"
                         value={password}
                         onChange={handlePasswordChange}
-                        className='input'
+                        className='Register-input'
                     />
                 </div>
                 <div className='formGroup'>
@@ -80,16 +89,16 @@ const Register = () => {
                         type="password"
                         value={rePass}
                         onChange={handleRePassChange}
-                        className='input'
+                        className='Register-input'
                     />
                 </div>
-                <div className='buttonGroup'>
-                    <button onClick={handleRegister} className='registerButton'>
+                <div className='Register-buttonGroup'>
+                    <button onClick={handleRegister} className='Register-registerButton'>
                         Register
                     </button>
-                    {/* <button onClick={handleLogin} className='loginButton'>
-                        <Link to="/login">Login</Link>
-                    </button> */}
+                    <button onClick={handleLoginButton} className='Register-loginButton'>
+                        Login
+                    </button>
                 </div>
             </div>
         </div>

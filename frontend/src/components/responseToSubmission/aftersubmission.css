@@ -1,0 +1,13 @@
+.after-main{
+    background-color: #02082d;
+    height: 90vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+#after-h3{
+    margin: 20px;
+}
+
+

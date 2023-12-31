@@ -1,0 +1,27 @@
+.myelect-main{
+    height: 90vh;
+    color: white;
+    padding: 10px;
+}
+
+.myelect-box{
+    padding:10px;
+    border: 0.5px white solid;
+    overflow: auto;
+    border-radius: 6px;
+}
+
+.myelect-each-ques{
+    background-color: #3c4476;
+    padding: 10px;
+    margin: 4px;
+    border-radius: 10px;
+}
+
+.myelect-light-color{
+    background-color: #3c4476;
+}
+
+.myelect-delete-box{
+    margin-top: 10px;
+}

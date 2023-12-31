@@ -2,11 +2,13 @@ import React, {useContext, useState} from 'react';
 import { LoginContext } from '../context/LoginContext';
 import './Logcheck.css';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 
 function Logcheck() {
     const {userEmail, logout} = useContext(LoginContext);
     const [userName, setUserName] = useState('');
+    const navigate = useNavigate();
 
     // console.log("Email : " + userEmail);
 
@@ -27,20 +29,24 @@ function Logcheck() {
         setUserName('');
     }
 
+    
     if (userName.length === 0) {
-
+        
+        const handleButton = () => {
+            navigate('/login');
+        }
         return (
             <div className='Logcontainer'>
-                <span className='header__optionLineOne'>Hello Guest</span>
-                <a href="/login" className='header__optionLineTwo'>Sign In</a>
+                <div className='header__optionLineOne'>Hello Guest</div>
+                <button onClick={handleButton} className='header__optionLineTwo'>Sign In</button>
             </div>
         )
     }
     else{
         return (
             <div className='Logcontainer'>
-                <a href='/#' className='header__optionLineTwo'>{userName}</a>
-                <a href='/' className='header__optionLineTwo' onClick= {logoutprocess}>Logout</a>
+                <div className='header__optionLineOne'>{userName}</div>
+                <button className='header__optionLineTwo' onClick= {logoutprocess}>Logout</button>
             </div>
         )
     }

@@ -7,8 +7,9 @@ import Home from './Home';
 import Createquiz from './Createquiz';
 import { LoginContext } from './../context/LoginContext';
 import AddQuestion from './Addqueston';
-// import Loading from './Loading.js'
 import { Findelection } from './find election/Findelection';
+import { AfterSubmit } from './responseToSubmission/AfterSubmit';
+import { MyElection } from './My elections/MyElection';
 
 function App() {
   const storedUserEmail = localStorage.getItem('userEmail');
@@ -35,6 +36,8 @@ function App() {
             <Route path='/createquiz' element={[<Header />, <Createquiz />]} />
             <Route path='/addq' element={[<Header />, <AddQuestion />]} />
             <Route path='/findelection' element={[<Header />, <Findelection />]} />
+            <Route path='/election/submissionsuccess' element={[<Header />, <AfterSubmit />]} />
+            <Route path='/myelection' element={[<Header />, <MyElection />]} />
           </Routes>
         </LoginContext.Provider>
       </div>

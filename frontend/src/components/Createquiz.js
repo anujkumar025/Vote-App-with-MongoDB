@@ -14,7 +14,6 @@ function Createquiz() {
   const navigate = useNavigate();
 
   // alert(userEmail);
-
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -34,18 +33,11 @@ function Createquiz() {
   
   async function handleSubmit(e){
     e.preventDefault();
-      // console.log('Title:', title);
-      // console.log('Description:', description);
-      // console.log('Date:', date);
-      // console.log('public:', public1);
       if(title && description && date && public1){
           const titleinfo = {title, description, date, public1, userEmail};
-          // console.log(titleinfo);
           await axios.post("http://localhost:5000/createquiz", titleinfo)
           .then(res => {
               if(res.data.message === "Title saved successfully"){
-                  alert(res.data.message);
-                  console.log(res.data.message);
                   navigate('/addq');
               }  
               else{   
@@ -59,13 +51,16 @@ function Createquiz() {
   };
   
   return (
-      <div className="input-form">
+  <div className="Create-main">
+    <div className='Create-form-box'>
+
       <h1>Input Form</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title (100 characters max):</label>
+        <div className='Create-formgroup'>
+          <label htmlFor="title">Title (150 characters max):</label>
           <input
             type="text"
+            className='Create-input'
             id="title"
             value={title}
             onChange={handleTitleChange}
@@ -73,10 +68,11 @@ function Createquiz() {
             required
           />
         </div>
-        <div>
+        <div className='Create-formgroup'>
           <label htmlFor="description">Description:</label>
           <textarea
             type="text"
+            className='Create-input'
             id="description"
             value={description}
             onChange={handleDescriptionChange}
@@ -84,56 +80,43 @@ function Createquiz() {
             required
           />
         </div>
-        <div>
+        <div className='Create-formgroup'>
           <label htmlFor="date">Deadline:</label>
           <input
             type="date"
+            className='Create-input'
             id="date"
             value={date}
             onChange={handleDateChange}
             required
           />
         </div>
-        <div>
+        <div className='Create-formgroup-radio'>
+        <label>Public</label>
           <input
             type="radio"
             value={true}
             name='public1'
             onChange={handleAccessChange}
             required
-          />Public
-          <input
-            type="radio"
-            value={false}
-            name='public1'
-            onChange={handleAccessChange}
-            required
-          />Private
+          />
         </div>
-        {/* <div>
-          <label htmlFor="radio1">Accessibility of election:</label>
+        <div className='Create-formgroup-radio'>
+          <label>Private</label>
           <input
             type="radio"
-            id="radio1"
-            name="public1"
-            value={true}
-            onChange={handleAccessChange}
-            required
-          />Public
-          <input
-            type="radio"
-            id="radio2"
-            name="public1"
             value={false}
+            name='public1'
             onChange={handleAccessChange}
             required
-          />Private
-        </div> */}
+          />
+        </div>
         <div>
           <button type="submit">Submit</button>
         </div>
       </form>
     </div>
+  </div>
   );
 }
 

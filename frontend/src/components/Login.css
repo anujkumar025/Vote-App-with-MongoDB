@@ -1,14 +1,18 @@
-.box{
+.Login-box{
     display: flex;
     justify-content: center;   
-    align-items: center;
-    height: 75vh;
+    /* align-items: center; */
+    height: 90vh;
+    background-color: #02082d;
+    color:white;
 }
 
-.container{
+.Login-container{
     width: 300px;
     /* height: 500px; */
-    margin: auto;
+    /* margin: auto; */
+    margin-top: 10vh;
+    height: 42vh;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -24,9 +28,10 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: white;
 }
 
-.buttonGroup{
+.Login-buttonGroup{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -34,7 +39,7 @@
 }
 
 
-.registerButton{
+.Login-registerButton{
     /* margin-right: 10px; */
     flex: 1;
     padding: 10px;
@@ -45,17 +50,16 @@
     background-color: #007bff;
 }
 
-.loginButton{
+.Login-loginButton{
     flex: 1;
     padding: 10px;
-    background-color: #28a745;
+    background-color: #28a746;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.ar{
-    text-decoration: none;
-    color:white;
+.Login-registerButton:hover, .Login-loginButton:hover{
+    background-color: #007bff88;
 }

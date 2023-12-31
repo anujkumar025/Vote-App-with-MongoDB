@@ -59,7 +59,7 @@ app.post("/register", async (req, res) => {
         }
         else {
             // console.log("good here4")
-            return res.send("User already registered");
+            return res.send({message: "User already registered"});
         }
     }
     catch(err) {
@@ -107,10 +107,46 @@ app.post("/createquiz", async (req, res) =>{
 })
 
 
+app.post("/deleteElection", async (req, res) =>{
+    const {userEmail} = req.body;
+    // console.log(title, description, date, public1, userEmail);
+    try{
+        const result = await Election.findOneAndDelete({userEmail});
+        const result1 = await Questions.deleteMany({electionId: result._id});
+        return res.send({message: "Data deleted successfully"});
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+
+app.post("/myelectiondata", async (req, res) =>{
+    const {userEmail} = req.body;
+    // console.log(userEmail);
+    try{
+        const result1 = await Election.findOne({userEmail});
+        if(result1){
+            const result2 = await Questions.find({electionId: result1._id});
+            const datapacket = [result1, result2];
+            return res.send({dataPacket: datapacket});
+        }
+        else{
+            return res.send({message: "No data present"})
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+
 app.post("/checkresult", async (req, res) =>{
-    const {selectedOptions, objId, QObjId} = req.body;
+    const {selectedOptions, objId, QObjId, attemptedQues} = req.body;
     // console.log(req.body);
-    console.log(selectedOptions, objId, QObjId);
+    // console.log(selectedOptions, objId, QObjId, attemptedQues);
     try{
         for (i in QObjId){
             if(selectedOptions[i] === ''){
@@ -118,12 +154,18 @@ app.post("/checkresult", async (req, res) =>{
             }
             const result3 = await Questions.findOne({_id: QObjId[i]});
             // console.log("result3", result3, "\n");
+            var newvalueofattempted = result3.peopleWhoAttempted + 1;
             if(result3.correctOption === selectedOptions[i]){
                 var newvalue = result3.peopleWhoChoseRight + 1;
-                console.log(newvalue);
-                var filter = {_id: QObjId[i]};
+                // console.log(newvalue);
+                // var filter = {_id: QObjId[i]};
                 const result = await Questions.updateOne({_id: QObjId[i]},
-                {$set: {peopleWhoChoseRight : newvalue}}
+                {$set: {peopleWhoChoseRight : newvalue, peopleWhoAttempted: newvalueofattempted}}
+                );
+            }
+            else if(attemptedQues[i] !== 0){
+                const result = await Questions.updateOne({_id: QObjId[i]},
+                {$set: {peopleWhoAttempted: newvalueofattempted}}
                 );
             }
         }
@@ -182,9 +224,9 @@ app.post("/addq", async (req, res) =>{
                 jodt = result0._id;
             }
             // console.log(question, options, correctOption);
-            const result = await Questions.create({question, options, correctOption, electionId:jodt, peopleWhoChoseRight:0});
+            const result = await Questions.create({question, options, correctOption, electionId:jodt, peopleWhoChoseRight:0, peopleWhoAttempted:0});
         }
-        return res.send({message: 'Question saved successfully'});
+        return res.send({message: 'Question saved successfully', codeOfElection: jodt});
     }
     catch(err){
         console.log(err);

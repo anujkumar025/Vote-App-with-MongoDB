@@ -30,6 +30,9 @@ const Questionschema = new mongoose.Schema({
     },
     peopleWhoChoseRight:{
         type:Number
+    },
+    peopleWhoAttempted:{
+        type:Number
     }
 });
 

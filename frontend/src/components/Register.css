@@ -1,11 +1,13 @@
-.box{
+.Register-box{
     display: flex;
     justify-content: center;   
     align-items: center;
-    height: 75vh;
+    height: 90vh;
+    background-color: #02082d;
+    color:white;
 }
 
-.container{
+.Register-container{
     width: 300px;
     /* height: 500px; */
     margin: auto;
@@ -18,22 +20,35 @@
     margin-bottom: 15px;
 }
 
-.input{
+
+.Register-input{
     width: 100%;
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: white;
 }
 
-.buttonGroup{
+.Register-buttonGroup{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
 }
 
 
-.registerButton{
-    margin-right: 10px;
+.Register-registerButton{
+    flex: 1;
+    padding: 10px;
+    background-color: #28a746;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Register-loginButton{
     flex: 1;
     padding: 10px;
     color: #fff;
@@ -41,19 +56,8 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: #007bff;
-    /* flex: 1; */
 }
 
-.loginButton{
-    flex: 1;
-    padding: 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-Link{
-    color: white;
+.Register-registerButton:hover, .Register-loginButton:hover{
+    background-color: #007bff88;
 }

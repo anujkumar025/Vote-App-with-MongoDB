@@ -1,12 +1,25 @@
 /* QuizInput.css */
+*{
+  background-color: #02082d;
+}
 
-.quiz-input {
+.AddQ-input-box{
+  padding:15px;
+}
+
+.quiz-input-box {
     max-width: 600px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin: 0;
     padding: 20px;
-    border: 1px solid #ccc;
+    height: 90vh;
+    color: white;
+    /* border: 1px solid #ccc; */
+    overflow:auto;
     border-radius: 5px;
-    background-color: #fff;
+    /* background-color: #02082d; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
@@ -20,6 +33,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #08114e;
   }
   
   .question-container input[type="text"] {
@@ -30,14 +44,22 @@
     border-radius: 5px;
   }
   
+.AddQQ{
+  background-color: white;
+  /* color: black; */
+}
+
   .options-container {
     margin-bottom: 10px;
   }
+
+
   
   .options-container div {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
+    background-color: #08114e;
   }
   
   .options-container input[type="text"] {
@@ -46,15 +68,11 @@
     margin-right: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: white;
   }
-  
-  .save-confirmation {
-    display: flex;
-    align-items: center;
-  }
-  
-  .save-confirmation input[type="checkbox"] {
-    margin-right: 5px;
+
+  .options-container label{
+    background-color: #08114e;
   }
   
   button {
@@ -69,4 +87,43 @@
   button:hover {
     background-color: #0056b3;
   }
+
+.AddQ-button-group{
+  display: flex;
+  /* justify-content: space-around; */
+  gap: 10px;
+}
+
+.AddQ-submitted-box{
+  color: white;
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+}
+
+.AddQ-code-copy{
+  border: 0.5px white solid;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.AddQ-code-copy img{
+  height: 20px;
+}
+
+.AddQ-copy2{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+}
+
+
+.AddQ-code-copy .AddQ-copy2:hover{
+  background-color: #1d2554;
+}
   

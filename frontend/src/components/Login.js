@@ -39,9 +39,13 @@ const Login = () => {
         }
     }
 
+    const handleRegisterButton = () => {
+        navigate('/register');
+    }
+
     return(
-        <div className='box'>
-            <div className='container'>
+        <div className='Login-box'>
+            <div className='Login-container'>
                 <h2>Login</h2>
                 <div className='formGroup'>
                     <label>Email : </label>
@@ -61,13 +65,11 @@ const Login = () => {
                         className='input'
                     />
                 </div>
-                <div className='buttonGroup'>
-                    <button onClick={handleLogin} className='loginButton'>
+                <div className='Login-buttonGroup'>
+                    <button onClick={handleLogin} className='Login-loginButton'>
                         Login
                     </button>
-                    <button className='registerButton'>
-                        <a className='ar' href="/register">Register</a>
-                    </button>
+                    <button onClick={handleRegisterButton}  className='Login-registerButton'>Register</button>
                 </div>
             </div>
         </div>

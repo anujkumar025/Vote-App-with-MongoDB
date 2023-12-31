@@ -3,15 +3,36 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: #000000d0;
+    background-color: #02082d;
     box-sizing: border-box;
+    flex-direction: column;
+}
+
+.Home-main-upper{
+    padding: 10px;
+}
+
+.Home-my-election-button{
+    margin:10px;
+    background-color: rgb(18, 68, 112);
+}
+
+.Home-my-election-button:hover{
+    background-color: rgb(25, 96, 159);
+
+}
+
+
+.Home-main-bottom{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
 .left{
-    background-color: #000000d0;
-    border: 1px solid black;
+    background-color: #7c7c7c2b;
+    /* border: 1px solid black; */
     border-radius: 20px;
     margin: 10px;
     margin-bottom: 10rem;
@@ -19,6 +40,7 @@
     width: 50%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     gap: 20px;
 }
 
@@ -27,10 +49,10 @@
     font-size: 1.3em;
     margin: 10px;
     flex: 1;
-    background-color: #7c7c7c2b;
+    background-color: #7c7c7c2c;
     color: white;
     min-width: 100px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 30px;
     height: 40%;
     justify-content: center;
@@ -39,7 +61,7 @@
 }
 
 .button1:hover{
-    background-color: #7c7c7c6b;
+    background-color: #7c7c7c5b;
     cursor: pointer;
 }
 
@@ -60,18 +82,10 @@
   }
 
 .right{
+    background-color: #7c7c7c2b;
     left: 10px;
     border: 1px solid black;
     margin: 20px 0;
     width: 40%;
     height: 65vh;
-}
-
-a{
-    text-decoration: none;
-    color: white;
-}
-
-a:hover{
-    color:white;
 }
