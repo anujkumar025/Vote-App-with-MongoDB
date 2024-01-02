@@ -2,10 +2,11 @@
     margin: 0;
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background-color: #02082d;
     box-sizing: border-box;
     flex-direction: column;
+    overflow: auto;
 }
 
 .Home-main-upper{
@@ -65,10 +66,20 @@
     cursor: pointer;
 }
 
+.right{
+    background-color: #7c7c7c2b;
+    left: 10px;
+    display: flex;
+    border: 1px solid black;
+    margin: 20px 0;
+    width: 40%;
+    height: 65vh;
+}
+
 @media (max-width: 800px) {
     .button1{
         font-size: 1.2em;
-        background-color: black;
+        /* background-color: black; */
     }
     .main{
         flex-direction: column;
@@ -78,14 +89,21 @@
         flex-direction: column;
         height: 30vh;
         margin-bottom: 2rem;
+        width: 70%;
+    }
+    .Home-main-bottom{
+        flex-direction: column;
+    }
+    .right{
+        width: 70%;
+        height: 55vh;
+        /* background-color: white; */
+    }
+    .Home-main-upper{
+        display: flex;
+        justify-content: center;    
+    }
+    .main{
+        padding: 1rem;
     }
   }
-
-.right{
-    background-color: #7c7c7c2b;
-    left: 10px;
-    border: 1px solid black;
-    margin: 20px 0;
-    width: 40%;
-    height: 65vh;
-}

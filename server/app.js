@@ -5,7 +5,8 @@ const users = require('./models/users');
 const Election = require('./models/elections');
 const Questions = require('./models/questions');
 const bcrypt = require('bcrypt');
-const {ObjectId} = require('mongodb');
+// const {ObjectId} = require('mongodb');
+const jwt_decode = require('jwt-decode'); 
 
 
 
@@ -85,6 +86,32 @@ app.post("/login", async (req, res) => {
         else {
             // console.log(check.name);
             return res.send("User is authentic");
+        }
+    }
+    catch(err) {
+        console.log(err);
+        res.send("wrong Details");
+    }
+});
+app.post("/loggoogle", async (req, res) => {
+    const {credential} = req.body;
+    // console.log(jwt_decode);
+    const decodedCredential = jwt_decode.jwtDecode(credential);
+    // console.log(decodedCredential);
+    try {
+        const check = await users.findOne({ email: decodedCredential.email});
+        // console.log(check);
+        if (!check) {
+            // console.log('goodhere1')
+            return res.send("User not found")
+        }
+        // const isPasswordMatch = await bcrypt.compare(password, check.password);
+        if (decodedCredential.name !== check.fname){
+            return res.send("wrong Password");
+        }
+        else {
+            // console.log(check.name);
+            return res.send({useremail: decodedCredential.email});
         }
     }
     catch(err) {
