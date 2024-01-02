@@ -3,6 +3,8 @@ import './Login.css';
 import { LoginContext } from '../context/LoginContext';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import BackendAddress from './../helper/Helper.js';
+
 
 const Login = () => {
     const {updateUserEmail} = useContext(LoginContext);
@@ -23,7 +25,7 @@ const Login = () => {
         // console.log("email : ", email, "password : ", password);
         if(email && password){
             const user = {email, password};
-            await axios.post("http://localhost:5000/login", user)
+            await axios.post(BackendAddress + "login", user)
             .then(res => {
                 // console.log(res.data.message);
                 if(res.data.message === "0"){

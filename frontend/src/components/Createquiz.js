@@ -3,6 +3,8 @@ import './Createquiz.css';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { LoginContext } from '../context/LoginContext';
+import BackendAddress from './../helper/Helper.js';
+
 
 
 function Createquiz() {
@@ -35,7 +37,7 @@ function Createquiz() {
     e.preventDefault();
       if(title && description && date && public1){
           const titleinfo = {title, description, date, public1, userEmail};
-          await axios.post("http://localhost:5000/createquiz", titleinfo)
+          await axios.post(BackendAddress+"createquiz", titleinfo)
           .then(res => {
               if(res.data.message === "Title saved successfully"){
                   navigate('/addq');

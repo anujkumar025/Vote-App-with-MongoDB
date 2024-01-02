@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './FIndelection.css'
+import BackendAddress from './../../helper/Helper.js';
+
 
 
 export const Findelection = () => {
@@ -21,7 +23,7 @@ export const Findelection = () => {
         
         async function handleSubmit(){
             if(objId){
-                await axios.post("http://localhost:5000/findelection", {objId})
+                await axios.post(BackendAddress + "findelection", {objId})
                 .then(res=>{
                     if(res.data.message){
                         // alert(res.data.message);
@@ -69,7 +71,7 @@ export const Findelection = () => {
             e.preventDefault();
             // console.log(dataOfElection);
             if(selectedOptions.length !== 0)
-                await axios.post("http://localhost:5000/checkresult", {selectedOptions, objId, QObjId:dataOfElection.QobjId, attemptedQues:attemptedQues})
+                await axios.post(BackendAddress+"checkresult", {selectedOptions, objId, QObjId:dataOfElection.QobjId, attemptedQues:attemptedQues})
                 .then(res=>{
                     if(res.data.message){
                       // alert(res.data.message);
@@ -97,9 +99,9 @@ export const Findelection = () => {
                 {ques.map((question, index) => (
                   <div key={index} className='find-each-ques'>
                     <p className='find-light-color'>Question {index + 1}: {question}</p>
-                    <ul>
+                    <ul className='find-light-color'>
                       {opt[index].map((option, optIndex) => (
-                        <li key={optIndex}>
+                        <li key={optIndex} className='find-light-color'>
                           <label className='find-light-color'>
                             <input
                               type="radio"

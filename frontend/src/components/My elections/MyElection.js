@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LoginContext } from '../../context/LoginContext';
 import './MyElection.css';
+import BackendAddress from './../../helper/Helper.js';
+
 
 export const MyElection = () => {
     const {userEmail} = useContext(LoginContext);
@@ -31,7 +33,7 @@ export const MyElection = () => {
         }
 
         const handleDeleteElection = async () =>{
-            await axios.post("http://localhost:5000/deleteElection", {userEmail})
+            await axios.post(BackendAddress + "deleteElection", {userEmail})
             .then(res =>{
                 alert(res.data.message);
                 setDataPresent(false);

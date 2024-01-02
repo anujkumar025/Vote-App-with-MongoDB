@@ -2,7 +2,8 @@ import React, { useState, useContext } from 'react';
 import './Addquestion.css';
 import axios from 'axios';
 import { LoginContext } from '../context/LoginContext';
-import clipsvg from './../images/copy2clipboard.svg'
+import clipsvg from './../images/copy2clipboard.svg';
+import BackendAddress from './../helper/Helper.js';
 
 
 
@@ -63,7 +64,7 @@ function AddQuestion() {
     async function handleSubmit(){
       const allQuesArray = [...questions];
       // console.log(allQuesArray);
-      axios.post("http://localhost:5000/addq", allQuesArray)
+      axios.post(BackendAddress+"addq", allQuesArray)
       .then(res => {
         if(res.data.message === "Question saved successfully"){
           // alert(res.data.message);
@@ -143,7 +144,7 @@ function AddQuestion() {
           <div className='AddQ-code-copy'>
             {/* <p>{codeOfElection}</p> */}
             <div className='AddQ-copy1'>
-              873645823642734576
+              {codeOfElection}
             </div>
             <div className='AddQ-copy2'>
               <img

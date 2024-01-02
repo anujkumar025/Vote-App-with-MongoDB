@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './Register.css';
 import {useNavigate} from 'react-router-dom';
 import axios from "axios";
+import BackendAddress from './../helper/Helper.js';
+
 
 const Register = () => {
     const navigate = useNavigate();
@@ -30,7 +32,7 @@ const Register = () => {
         // console.log("email : ", email, "password : ", password, "name : ", name, "rePass : ", rePass);
         if(fname && email && password && (password === rePass)){
             const user = {fname, email, password};
-            axios.post("http://localhost:5000/register", user)
+            axios.post(BackendAddress + "register", user)
             .then(res => {
                 if(res.data.message === "User registered successfully."){
                     alert(res.data.message);

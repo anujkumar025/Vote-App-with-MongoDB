@@ -3,6 +3,8 @@ import { LoginContext } from '../context/LoginContext';
 import './Logcheck.css';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import BackendAddress from './../helper/Helper.js';
+
 
 
 function Logcheck() {
@@ -12,7 +14,7 @@ function Logcheck() {
 
     // console.log("Email : " + userEmail);
 
-    axios.post("http://localhost:5000/username", {email : userEmail})
+    axios.post(BackendAddress + "username", {email : userEmail})
     .then(res => {
         if(res.data.message !== "error 404"){
             // console.log(res.data.message);
