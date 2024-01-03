@@ -106,13 +106,7 @@ app.post("/loggoogle", async (req, res) => {
             return res.send("User not found")
         }
         // const isPasswordMatch = await bcrypt.compare(password, check.password);
-        if (decodedCredential.name !== check.fname){
-            return res.send("wrong Password");
-        }
-        else {
-            // console.log(check.name);
-            return res.send({useremail: decodedCredential.email});
-        }
+        else return res.send({useremail: decodedCredential.email});
     }
     catch(err) {
         console.log(err);
