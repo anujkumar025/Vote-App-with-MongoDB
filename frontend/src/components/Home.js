@@ -10,16 +10,18 @@ const Home = () =>{
     const navigate = useNavigate();
 
     const handleMyElection = async () => {
-        await axios.post(BackendAddress + "myelectiondata", {userEmail})
-        .then(res=>{
-            if(res.data.message !== 'No data present'){
-                // console.log(res.data.dataPacket);
-                navigate('/myelection', {state: {dataPacket:res.data.dataPacket}});
-            }
-            else if(res.data.message === "No data present"){
-                alert(res.data.message);
-            }
-        })
+
+        navigate('/myelection');
+        // await axios.post(BackendAddress + "myelectiondata", {userEmail})
+        // .then(res=>{
+        //     if(res.data.message !== 'No data present'){
+        //         // console.log(res.data.dataPacket);
+        //         navigate('/myelection', {state: {dataPacket:res.data.dataPacket}});
+        //     }
+        //     else if(res.data.message === "No data present"){
+        //         alert(res.data.message);
+        //     }
+        // })
     }
 
     const handleCreateQuizButton = () =>{

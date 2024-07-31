@@ -7,7 +7,7 @@ import Home from './Home';
 import Createquiz from './Createquiz';
 import { LoginContext } from './../context/LoginContext';
 import AddQuestion from './Addqueston';
-import {Result} from './result page/Result'
+import { Result } from './result page/Result';
 import { Findelection } from './find election/Findelection';
 import { AfterSubmit } from './responseToSubmission/AfterSubmit';
 import { MyElection } from './My elections/MyElection';

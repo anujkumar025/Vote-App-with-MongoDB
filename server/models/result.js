@@ -34,6 +34,9 @@ const ResultSchema = new mongoose.Schema({
     chosenOption:{
         type:Array
     },
+    attempted:{
+        type:Array
+    }
 });
 
 // collection part
