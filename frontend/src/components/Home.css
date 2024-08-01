@@ -1,16 +1,40 @@
+/* :root {
+    --lightbackground: #724bc6;
+    --darkbackground: #340a95;
+} */
+
+.design-container{
+    position: relative;
+    margin: 0;
+    height: 90vh;
+    overflow: hidden;
+}
+
 .main{
+    position: absolute;
     margin: 0;
     display: flex;
     width: 100vw;
-    height: 90vh;
-    background-color: #02082d;
+    height: 75vh;
+    background-color: var(--darkbackground);
     box-sizing: border-box;
     flex-direction: column;
-    overflow: auto;
+    overflow: hidden;
+    z-index: 0;
 }
 
 .Home-main-upper{
     padding: 10px;
+}
+
+.design-div{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 62vh;
+    z-index: 1;
 }
 
 .Home-my-election-button{
@@ -31,8 +55,17 @@
     align-items: center;
 }
 
+.options{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 70vh;
+    z-index: 2;
+}
+
 .left{
-    background-color: #7c7c7c2b;
+    background-color: #fff;
     /* border: 1px solid black; */
     border-radius: 20px;
     margin: 10px;
@@ -41,7 +74,7 @@
     width: 50%;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
 }
 
@@ -50,8 +83,9 @@
     font-size: 1.3em;
     margin: 10px;
     flex: 1;
+    color: black;
     background-color: #7c7c7c2c;
-    color: white;
+    /* color: white; */
     min-width: 100px;
     /* border: 1px solid black; */
     border-radius: 30px;
@@ -62,18 +96,18 @@
 }
 
 .button1:hover{
-    background-color: #7c7c7c5b;
+    background-color: var(--lightbackground);
+    color: white;
     cursor: pointer;
 }
 
-.right{
-    background-color: #7c7c7c2b;
-    left: 10px;
-    display: flex;
-    border: 1px solid black;
-    margin: 20px 0;
-    width: 40%;
-    height: 65vh;
+.Text-box{
+    color: white;
+    font-size: 3rem;
+}
+
+.graphic-box > img{
+    width: 800px;
 }
 
 @media (max-width: 800px) {

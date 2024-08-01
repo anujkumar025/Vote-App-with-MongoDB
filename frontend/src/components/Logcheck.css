@@ -1,12 +1,12 @@
 .Logcontainer{
     display: flex;
     justify-content: flex-end; 
-    background-color: #010625;   
+    background-color: var(--darkbackground);   
 }
 
 .header__optionLineOne{
     margin: 10px;
-    background-color: #010625;
+    background-color: var(--darkbackground);
 }
 
 .header__optionLineTwo{
@@ -15,6 +15,6 @@
 }
 
 .header__optionLineTwo:hover{
-    background-color: #40404795;
+    background-color: var(--lightbackground);
 }
 
