@@ -13,16 +13,19 @@ const Header = () => {
   return (
     <div className='header'>
       <div className='left-header'>
-        <a href="/"><img src={logo} alt="Logo" className='logo'/></a>
         <div className='Home-main-upper'>
-            <button className='Home-my-election-button' onClick={handleMyElection}>My Elections</button>
+        <div className='title-block'>
+            <a href="/"><img src={logo} alt="Logo" className='logo'/></a>
+            <div>
+              <h1 id='Head-h1'>A-Know</h1>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button className='Home-my-election-button' onClick={handleMyElection}>My Elections</button>
         </div>
       </div>
       <div className='middle'>
-        {/* <div className='Home-main-upper'>
-            <button className='Home-my-election-button' onClick={handleMyElection}>My Elections</button>
-        </div> */}
-        <h1 id='Head-h1'>A-Know</h1>
       </div>
       <div className='right-header'>
         <Logcheck/>

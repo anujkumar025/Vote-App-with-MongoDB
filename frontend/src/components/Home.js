@@ -19,7 +19,10 @@ const Home = () =>{
             <div className='main'>
                 <div className='Home-main-bottom'>
                     <div className='Text-box'>
-                        <div>Knowledge at Its Brightest</div>
+                        <div className='inner-text-box'>
+                        <div>Knowledge at Its</div>
+                        <div>Brightest</div>
+                        </div>
                     </div>
                     <div className='graphic-box'>
                         <img src={librarySVG} alt="Icon" />

@@ -1,7 +1,5 @@
-/* :root {
-    --lightbackground: #724bc6;
-    --darkbackground: #340a95;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lilita+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
 
 .design-container{
     position: relative;
@@ -15,7 +13,7 @@
     margin: 0;
     display: flex;
     width: 100vw;
-    height: 75vh;
+    height: 90vh;
     background-color: var(--darkbackground);
     box-sizing: border-box;
     flex-direction: column;
@@ -23,9 +21,9 @@
     z-index: 0;
 }
 
-.Home-main-upper{
+/* .Home-main-upper{
     padding: 10px;
-}
+} */
 
 .design-div{
     margin: 0;
@@ -37,7 +35,7 @@
     z-index: 1;
 }
 
-.Home-my-election-button{
+/* .Home-my-election-button{
     margin:10px;
     background-color: rgb(18, 68, 112);
 }
@@ -45,7 +43,7 @@
 .Home-my-election-button:hover{
     background-color: rgb(25, 96, 159);
 
-}
+} */
 
 
 .Home-main-bottom{
@@ -53,25 +51,28 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding: 35px;
 }
+
 
 .options{
     position: absolute;
     display: flex;
     justify-content: center;
+    width: 40vw;
     align-items: center;
     top: 70vh;
     z-index: 2;
+    left: 30%;
+    box-shadow: 1px 1px 10px grey;
+    border-radius: 20px;
 }
 
 .left{
     background-color: #fff;
-    /* border: 1px solid black; */
     border-radius: 20px;
-    margin: 10px;
-    margin-bottom: 10rem;
+    width: 100%;
     padding: 1rem 2rem;
-    width: 50%;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -84,15 +85,18 @@
     margin: 10px;
     flex: 1;
     color: black;
-    background-color: #7c7c7c2c;
-    /* color: white; */
+    background-color: #fff;
     min-width: 100px;
-    /* border: 1px solid black; */
     border-radius: 30px;
+    border: 1px solid var(--lightbackground);
     height: 40%;
     justify-content: center;
     justify-items: center;
     top: 30%;
+    font-family: "Schibsted Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 450;
+    font-style: normal;
 }
 
 .button1:hover{
@@ -102,12 +106,40 @@
 }
 
 .Text-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    font-size: 3rem;
+    font-size: 5rem;
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    height: 200px;
+    width: 100%;
+    /* box-sizing: border-box; */
+    /* min-width: 200px; */
+    box-sizing: border-box;
+    flex:1;
+    margin-left: 67px;
+}
+
+.inner-text-box{
+    word-wrap: break-word; 
+    word-break: break-word;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 48px;
+}
+
+.graphic-box{
+    width: 55vw;
 }
 
 .graphic-box > img{
-    width: 800px;
+    width: 100%;
 }
 
 @media (max-width: 800px) {
