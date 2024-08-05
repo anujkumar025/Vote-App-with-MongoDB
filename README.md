@@ -70,7 +70,7 @@ Follow these steps to set up and run the project locally:
     The frontend server will typically run on `http://localhost:3000` and the backend server on `http://localhost:5000`.
 
 ## Deployment
-The application is deployed and accessible at [Deployment Link](https://66b1042f1a567e3041e384c6--thunderous-mousse-fbd89f.netlify.app/).
+The application is deployed and accessible at [Deployment Link](https://66b12d45561fe1081d218b62--classy-sorbet-08fbc5.netlify.app/).
 
 ## Usage
 1. **Register/Login**: Users can register with an email and password or use Google authentication to log in.
