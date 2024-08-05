@@ -1,35 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lilita+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Paytone+One&display=swap');
+
+:root {
+    --lightbackground: #724bc6;
+    --darkbackground: #340a95;
+}
+
 .header{
     display: flex;
-    /* position: sticky; */
-    /* top: 3px; */
-    margin:0px 0px 0.3px 0px;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     width: 100vw;
     height: 10vh;
     padding: 10px 25px 6px 17px;
-    background-color: #010625;
+    background-color: var(--darkbackground);
     color: white;
 }
 
 .left-header{
-    background-color: #010625;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: var(--darkbackground);
+    align-items: center;
     flex: 1;
+    padding: 0px 0px 0px 20px;
+}
+
+.Home-my-election-button{
+    /* font-family: "Paytone One", sans-serif;
+    font-weight: 400;
+    font-style: normal; */
+    font-family: "Schibsted Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.1rem;
+    background-color: var(--darkbackground);
+}
+
+.Home-my-election-button:hover{
+    background-color: var(--lightbackground);
+}
+
+.Home-main-upper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--darkbackground);
+}
+
+.title-block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .middle{
-    background-color: #010625;
+    background-color: var(--darkbackground);
     flex: 2;
     text-align: center;
 }
 
 #Head-h1{
-    background-color: #010625;
+    background-color: var(--darkbackground);
+    font-family: "Paytone One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .right-header{
-    background-color: #010625;
+    background-color: var(--darkbackground);
     flex:1;
     /* margin-right: 10px; */
     text-align: right;

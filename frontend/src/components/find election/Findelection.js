@@ -1,18 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './FIndelection.css'
 import BackendAddress from './../../helper/Helper.js';
+import { LoginContext } from './../../context/LoginContext.js';
 
 
 
 export const Findelection = () => {
     const [objId, setObjId] = useState('');
-    const [attemptedQues, setAttemptedQues] = useState(new Array(15).fill(0));
+    const [attemptedQues, setAttemptedQues] = useState();
     const [dataOfElection, setDataOfElection] = useState('');
     const [isAuthentic, setIsAuthentic] = useState(false);
-    const [selectedOptions, setSelectedOptions] = useState(new Array(15).fill(''));
+    const [selectedOptions, setSelectedOptions] = useState();
     const navigate = useNavigate();
+    const { userEmail } = useContext(LoginContext);
 
 
     if(!isAuthentic){
@@ -27,8 +29,11 @@ export const Findelection = () => {
                 .then(res=>{
                     if(res.data.message){
                         // alert(res.data.message);
+                        console.log(res.data.packet);
                         setDataOfElection(res.data.packet);
                         setIsAuthentic(true);
+                        setAttemptedQues(new Array(res.data.packet.ques.length).fill(0))
+                        setSelectedOptions(new Array(res.data.packet.ques.length).fill(''))
                         // console.log(res.data.packet);
                         // navigate('/');
                     }  
@@ -71,7 +76,7 @@ export const Findelection = () => {
             e.preventDefault();
             // console.log(dataOfElection);
             if(selectedOptions.length !== 0)
-                await axios.post(BackendAddress+"checkresult", {selectedOptions, objId, QObjId:dataOfElection.QobjId, attemptedQues:attemptedQues})
+                await axios.post(BackendAddress+"checkresult", {selectedOptions, objId, QObjId:dataOfElection.QobjId, attemptedQues:attemptedQues, email:userEmail})
                 .then(res=>{
                     if(res.data.message){
                       // alert(res.data.message);

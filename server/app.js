@@ -4,8 +4,8 @@ const cors = require("cors");
 const users = require('./models/users');
 const Election = require('./models/elections');
 const Questions = require('./models/questions');
+const Results = require('./models/result')
 const bcrypt = require('bcrypt');
-// const {ObjectId} = require('mongodb');
 const jwt_decode = require('jwt-decode'); 
 
 
@@ -135,6 +135,7 @@ app.post("/deleteElection", async (req, res) =>{
     try{
         const result = await Election.findOneAndDelete({userEmail});
         const result1 = await Questions.deleteMany({electionId: result._id});
+        const result2 = await Results.findOneAndDelete({quiz_id: result._id});
         return res.send({message: "Data deleted successfully"});
     }
     catch(err){
@@ -148,10 +149,11 @@ app.post("/myelectiondata", async (req, res) =>{
     const {userEmail} = req.body;
     // console.log(userEmail);
     try{
-        const result1 = await Election.findOne({userEmail});
-        if(result1){
-            const result2 = await Questions.find({electionId: result1._id});
-            const datapacket = [result1, result2];
+        const quizData = await Election.find({userEmail});
+        if(quizData){
+            // const result2 = await Questions.find({electionId: result1._id});
+            // const datapacket = [result1, result2];
+            const datapacket = quizData;
             return res.send({dataPacket: datapacket});
         }
         else{
@@ -166,10 +168,10 @@ app.post("/myelectiondata", async (req, res) =>{
 
 
 app.post("/checkresult", async (req, res) =>{
-    const {selectedOptions, objId, QObjId, attemptedQues} = req.body;
+    const {selectedOptions, objId, QObjId, attemptedQues, email} = req.body;
     // console.log(req.body);
-    // console.log(selectedOptions, objId, QObjId, attemptedQues);
     try{
+        let isChosenOptionCorrect = [];
         for (i in QObjId){
             if(selectedOptions[i] === ''){
                 continue;
@@ -177,25 +179,37 @@ app.post("/checkresult", async (req, res) =>{
             const result3 = await Questions.findOne({_id: QObjId[i]});
             // console.log("result3", result3, "\n");
             var newvalueofattempted = result3.peopleWhoAttempted + 1;
+            // var isChosenOptionCorrect = false;
             if(result3.correctOption === selectedOptions[i]){
+                // isChosenOptionCorrect=true;
+                isChosenOptionCorrect.push(true);
                 var newvalue = result3.peopleWhoChoseRight + 1;
                 // console.log(newvalue);
                 // var filter = {_id: QObjId[i]};
                 const result = await Questions.updateOne({_id: QObjId[i]},
-                {$set: {peopleWhoChoseRight : newvalue, peopleWhoAttempted: newvalueofattempted}}
+                    {$set: {peopleWhoChoseRight : newvalue, peopleWhoAttempted: newvalueofattempted}}
                 );
+            }
+            else if(result3.correctOption === selectedOptions[i]){
+                isChosenOptionCorrect.push(false);
             }
             else if(attemptedQues[i] !== 0){
                 const result = await Questions.updateOne({_id: QObjId[i]},
-                {$set: {peopleWhoAttempted: newvalueofattempted}}
+                    {$set: {peopleWhoAttempted: newvalueofattempted}}
                 );
             }
         }
-        return res.send({message: "Task done rightfully"});
+        const result4 = await Results.findOne({quiz_id: objId, email: email});
+        if(!result4){
+            var temp = await Results.create({quiz_id:objId, ques_id:QObjId, email:email, isCorrect:isChosenOptionCorrect, chosenOption:selectedOptions, attempted:attemptedQues});
+        }
+        // else{               
+        // }
+        return res.status(200).send({message: "Task done rightfully"});
     }
     catch(err){
         console.log(err);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send({message:"Internal Server Error"});
     }
 })
 
@@ -249,6 +263,41 @@ app.post("/addq", async (req, res) =>{
             const result = await Questions.create({question, options, correctOption, electionId:jodt, peopleWhoChoseRight:0, peopleWhoAttempted:0});
         }
         return res.send({message: 'Question saved successfully', codeOfElection: jodt});
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+app.post("/getresult", async (req, res) => {
+    const email = req.body.userEmail;
+    const quiz_id = req.body.quiz_id;
+    try{
+        const response = await Results.findOne({email:email, quiz_id:quiz_id});
+        if(response){
+            const questions = await Questions.find({_id: {$in : response.ques_id}});
+            // console.log(questions);
+            var ques = []
+            var options = []
+            for (i in questions){
+                ques.push(questions[i].question);
+                options.push(questions[i].options);
+            }
+            const packet = {
+                email:email,
+                isCorrect:response.isCorrect,
+                chosenOption: response.chosenOption,
+                ques: ques,
+                options:options
+            }
+            // console.log(packet);
+            return res.send({message: 'Found data', packet:packet});
+            // return res.send({message: 'Found data'});
+        }
+        else{
+            res.status(500).send("Sorry data not found");
+        }
     }
     catch(err){
         console.log(err);

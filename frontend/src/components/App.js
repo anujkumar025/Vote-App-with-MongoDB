@@ -7,6 +7,7 @@ import Home from './Home';
 import Createquiz from './Createquiz';
 import { LoginContext } from './../context/LoginContext';
 import AddQuestion from './Addqueston';
+import { Result } from './result page/Result';
 import { Findelection } from './find election/Findelection';
 import { AfterSubmit } from './responseToSubmission/AfterSubmit';
 import { MyElection } from './My elections/MyElection';
@@ -38,6 +39,7 @@ function App() {
             <Route path='/findelection' element={[<Header />, <Findelection />]} />
             <Route path='/election/submissionsuccess' element={[<Header />, <AfterSubmit />]} />
             <Route path='/myelection' element={[<Header />, <MyElection />]} />
+            <Route path='/myelection/result' element={[<Header />, <Result />]} />
           </Routes>
         </LoginContext.Provider>
       </div>

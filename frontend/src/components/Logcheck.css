@@ -1,20 +1,29 @@
 .Logcontainer{
     display: flex;
     justify-content: flex-end; 
-    background-color: #010625;   
+    background-color: var(--darkbackground);  
+    font-size: 1.1rem; 
 }
 
 .header__optionLineOne{
-    margin: 10px;
-    background-color: #010625;
+    margin: 10px 30px 10px 10px;
+    background-color: var(--darkbackground);
+    font-family: "Schibsted Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .header__optionLineTwo{
     background-color: #00000050;
     border-radius: 15px;
+    font-family: "Schibsted Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .header__optionLineTwo:hover{
-    background-color: #40404795;
+    background-color: var(--lightbackground);
 }
 

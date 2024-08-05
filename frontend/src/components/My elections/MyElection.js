@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LoginContext } from '../../context/LoginContext';
 import './MyElection.css';
@@ -8,72 +8,70 @@ import BackendAddress from './../../helper/Helper.js';
 
 export const MyElection = () => {
     const {userEmail} = useContext(LoginContext);
-    const [dataPresent, setDataPresent] = useState(true);
-    var location = useLocation();
+    const [dataPresent, setDataPresent] = useState(false);
+    const [dataPacket, setDataPacket] = useState(); 
+    const [countReq, setCountReq] = useState(true);
     const navigate = useNavigate();
     
-    if(dataPresent){
-        const electionData = location.state.dataPacket[0];
-        const questionData = location.state.dataPacket[1];
-        const title = electionData.title;
-        const desc = electionData.description;
-        const deadline = electionData.date;
-        var ques=[];
-        var opt=[];
-        var whoAttempted=[];
-        var whoChoseRight=[];
-        var correctOpt = [];
-        var j;
-        for (j in questionData){
-            ques.push(questionData[j].question);
-            opt.push(questionData[j].options);
-            whoChoseRight.push(questionData[j].peopleWhoChoseRight);
-            whoAttempted.push(questionData[j].peopleWhoAttempted);
-            correctOpt.push(questionData[j].correctOption);
-        }
 
-        const handleDeleteElection = async () =>{
-            await axios.post(BackendAddress + "deleteElection", {userEmail})
-            .then(res =>{
-                alert(res.data.message);
-                setDataPresent(false);
+    if(countReq){
+        setCountReq(false);
+        const getdata = async () => {
+    
+            await axios.post(BackendAddress + "myelectiondata", {userEmail})
+            .then(res=>{
+                if(res.data.message !== 'No data present'){
+                    setDataPacket(res.data.dataPacket);
+                    setDataPresent(true);
+                }
+                else if(res.data.message === "No data present"){
+                    alert(res.data.message);
+                }
+            })
+        }
+        getdata();
+    }
+
+    
+    if(dataPresent){
+
+        const handleGetMoreData = async (quiz_id) => {
+            await axios.post(BackendAddress + "getresult", {userEmail, quiz_id})
+            .then(res=>{
+                if(res.data.message !== 'No data present'){
+                    // setDataPacket(res.data.dataPacket);
+                    // console.log(res.data.packet);
+                    navigate('/myelection/result', {state: {packet: res.data.packet}});
+                    // setDataPresent(true);
+                }
+                else if(res.data.message === "No data present"){
+                    alert(res.data.message);
+                }
             })
         }
 
         return (
         <div className='myelect-main'>
             <div className='myelect-box'>
-                <div>
-                    <h1>Title: {title}</h1>
-                    <p>Description: {desc}</p>
-                    <p>Deadline: {new Date(deadline).toLocaleString()}</p>
-                    <h2>Questions:</h2>
-                </div>
-            <div className='myelect-Question-box'>
-                {ques.map((question, index) => (
-                    <div className='myelect-each-ques' key={index}>
-                        <p className='myelect-light-color'>Question {index + 1}: {question}</p>
-                        <ul className='myelect-light-color'>
-                        {opt[index].map((option, optIndex) => (
-                            <li  className='myelect-light-color' key={optIndex}>Option {optIndex + 1}: {option}</li>
-                        ))}
-                        </ul>
-                        <p className='myelect-light-color'>Correct Option: {correctOpt[index]+1}</p>
-                        <div>
-                            <h3 className='myelect-light-color'>Correct: {whoChoseRight[index]} / Total Attempt: {whoAttempted[index]}</h3>
-                            {/* <br></br> */}
-                        </div>
+            {dataPacket.map((quiz, index) => (
+                <div key={index}>
+                    <div>
+                        <h1>Title: {quiz.title}</h1>
+                        <p>Description: {quiz.description}</p>
+                        <p>Deadline: {new Date(quiz.date).toLocaleString()}</p>
                     </div>
-                ))}  
-            </div>
-            </div>
-            <div className='myelect-delete-box'>
-                <button onClick={handleDeleteElection}>Delete this elecion</button>
+                    <div className='myelect-delete-box'>
+                        <button onClick={() => handleGetMoreData(quiz._id)}>More Details</button>
+                    </div>
+                </div>
+            ))}
             </div>
         </div>
         );
     }
     else{
-        navigate('/');
+        return(
+            <div>wait</div>
+        )
     }    
 }
