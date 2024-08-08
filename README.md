@@ -3,6 +3,9 @@
 ## Overview
 Welcome to the Voting Web App! This project is built using the MERN stack (MongoDB, Express, React, Node.js) and provides a platform for users to participate in quizzes. The application includes secure authentication options, user-centric quiz creation, and management functionalities.
 
+## Deployment
+The application is deployed and accessible at [Deployment Link](https://66b12d45561fe1081d218b62--classy-sorbet-08fbc5.netlify.app/).
+
 ## Features
 - **Secure User Authentication**: Implemented secure user authentication with both custom login/logout and Google authentication options.
 - **User-Centric Quiz System**: Allows users to create personalized quizzes with unique invite codes and public quizzes for wider participation.
@@ -68,9 +71,6 @@ Follow these steps to set up and run the project locally:
     ```
 
     The frontend server will typically run on `http://localhost:3000` and the backend server on `http://localhost:5000`.
-
-## Deployment
-The application is deployed and accessible at [Deployment Link](https://66b12d45561fe1081d218b62--classy-sorbet-08fbc5.netlify.app/).
 
 ## Usage
 1. **Register/Login**: Users can register with an email and password or use Google authentication to log in.
