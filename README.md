@@ -4,7 +4,7 @@
 Welcome to the Voting Web App! This project is built using the MERN stack (MongoDB, Express, React, Node.js) and provides a platform for users to participate in quizzes. The application includes secure authentication options, user-centric quiz creation, and management functionalities.
 
 ## Deployment
-The application is deployed and accessible at [Deployment Link](https://66b7397e79ffcb0a7aae6c67--cerulean-fox-852606.netlify.app/).
+The application is deployed and accessible at [Deployment Link](https://66e575bf49004939ba38a25f--rainbow-sunflower-71542f.netlify.app/).
 
 ## Features
 - **Secure User Authentication**: Implemented secure user authentication with both custom login/logout and Google authentication options.
